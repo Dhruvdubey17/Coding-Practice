@@ -1,0 +1,110 @@
+import java.util.Scanner;
+class Student {
+	String usn;
+	String name;
+	int credits[] = new int[5];
+	int marks[] = new int[5];
+
+	void getStudentDetails() {
+
+		Scanner inp = new Scanner(System.in);
+		System.out.println("Enter the asked details of student ");
+		System.out.print("Name : ");
+		name = inp.next();
+		inp.nextLine();
+		System.out.print("USN : ");
+		usn = inp.next();
+
+		System.out.println("Enter marks in : ");
+		for(int k=0;k<5;k++) {
+			System.out.print("Subject  "+ (k+1) +" : ");
+			marks[k] = inp.nextInt();
+			
+		}
+	}
+
+	void printStudentDetails() {
+		System.out.println("Details of the student are: ");
+		System.out.println("Name : "+name);
+		System.out.println("USN : "+usn);
+		System.out.println("Marks Scored : ");
+		for(int i=0;i<5;i++){
+			System.out.println("Subject "+(i+1) + " : " +marks[i]);
+		}
+	}
+
+	void sgpa_cal() {
+		Scanner inp = new Scanner(System.in);
+		int totalCredit=0;
+		System.out.println("Enter credits for : ");
+		for(int i=0;i<5;i++) {
+			System.out.print("Subject " + (i+1) + " : ");
+			credits[i] = inp.nextInt();
+			totalCredit += credits[i];
+		}
+		System.out.println("Total credits for this semester = "+totalCredit);
+		int grdPnt[] = new int[5];
+		int j=0;
+		for(int k=0;k<5;k++) 
+		{
+			if(marks[k]>=90) {
+				grdPnt[j] = 10;
+				j++;
+			}
+			else if(marks[k]>=80) {
+				grdPnt[j] = 9;
+				j++;
+			}
+			else if(marks[k]>=70) {
+				grdPnt[j] = 8;
+				j++;
+			}
+			else if(marks[k]>=60) {
+				grdPnt[j] = 7;
+				j++;
+			}
+			else if(marks[k]>=50) {
+				grdPnt[j] = 6;
+				j++;
+			}
+			else if(marks[k]>=40) {
+				grdPnt[j] = 5;
+				j++;
+			}
+
+			else {
+				grdPnt[j] = 4;
+				j++;
+			}
+		}
+
+		int totalMarks = 0;
+		for(int i=0;i<5;i++) {
+			totalMarks = totalMarks + grdPnt[i]*credits[i];
+		}
+
+		double sgpa = (double)totalMarks/totalCredit;
+		System.out.println("SGPA of "+name+" : "+sgpa);
+	}
+}
+
+public class program2 {
+	public static void main(String args[]) {
+		Scanner inp = new Scanner(System.in);
+		Student detail = new Student();
+
+		
+		
+
+		
+		//get details
+		detail.getStudentDetails();
+		//print details
+		detail.printStudentDetails();
+		//cal sgpa
+		detail.sgpa_cal();
+		
+	}
+}
+	
+
